@@ -1,6 +1,6 @@
 ![](./images/calc.png)
 
-[Версия на русском языке](#center-проект-консольный-калькулятор-center)
+[Версия на русском языке](#center-Проект-Консольный-калькулятор-center)
 # <center> Project Console Calculator </center>
 
 ## Contents
