@@ -5,19 +5,20 @@ class Main {
 
     public static void main(String[] args) {
         System.out.print("Введите выражение: "); // вводим выражения в консоль
-
-        int result = Integer.parseInt(calc((scn.nextLine())));
+        String st = scn.nextLine();
+        int result = Integer.parseInt(calc(st));
+        //int result = Integer.parseInt(calc((scn.nextLine())));
         System.out.println("Результат операции: "+result);
     }
 
 
 
-    public static String calc(String input) {
+    public static String calc(String input){
         Converter converter = new Converter();
         String[] actions = {"+", "-", "/", "*"}; // создали словарь для определения мат операции
         String[] regexActions = {"\\+", "-", "/", "\\*"}; // создали словарь для подстановки в .split()
 
-        String exp = scn.nextLine();
+        String exp = input;
 
         //Определяем арифметическое действие:
         int actionIndex=-1;
@@ -31,11 +32,13 @@ class Main {
         if(actionIndex==-1){
             System.out.println("Некорректное выражение");
              //break;
-            // return("Некорректное выражение");
         }
         //Делим строчку по найденному арифметическому знаку
 
         String[] data = exp.split(regexActions[actionIndex]);
+        if (data.length > 2){
+            System.out.println("Некорректное выражение");
+        }
 
         //Определяем, находятся ли числа в одном формате (оба римские или оба арабские)
         if(converter.isRoman(data[0]) == converter.isRoman(data[1])){
@@ -92,4 +95,4 @@ class Main {
         return exp;
     }
 
-    }
+}
