@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 class Main {
     static Scanner scn = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.print("Введите выражение: "); // вводим выражения в консоль
         String st = scn.nextLine();
         int result = Integer.parseInt(calc(st));
@@ -13,7 +14,7 @@ class Main {
 
 
 
-    public static String calc(String input){
+    public static String calc(String input) throws IOException {
         Converter converter = new Converter();
         String[] actions = {"+", "-", "/", "*"}; // создали словарь для определения мат операции
         String[] regexActions = {"\\+", "-", "/", "\\*"}; // создали словарь для подстановки в .split()
@@ -37,7 +38,7 @@ class Main {
 
         String[] data = exp.split(regexActions[actionIndex]);
         if (data.length > 2){
-            System.out.println("Некорректное выражение");
+            throw new IOException("ОШИБКА!!! Введено больше 2 переменных");
         }
 
         //Определяем, находятся ли числа в одном формате (оба римские или оба арабские)
@@ -56,9 +57,9 @@ class Main {
                 b = Integer.parseInt(data[1]);
             }
             if (a > 10) {
-                System.out.println("Некорректное выражение");
+                throw new IOException("ОШИБКА!!! Введено число больше 10");
             } else if (b > 10) {
-                System.out.println("Некорректное выражение");
+                throw new IOException("ОШИБКА!!! Введено число больше 10");
             }
             //выполняем с числами арифметическое действие
             int result;
